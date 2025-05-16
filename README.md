@@ -17,3 +17,7 @@ b. What does it mean? guest:guest@localhost:5672 , what is the first guest, and 
 - `guest` pertama: Username yang digunakan untuk mengakses server AMQP
 - `guest` kedua: Password pengguna
 - `localhost:5672`: Alamat dan port di mana server AMQP berjalan. `localhost` berarti server tersebut berjalan di mesin yang sama dengan aplikasi yang mencoba terhubung dan `5672` adalah port default yang digunakan oleh server AMQP untuk menerima koneksi
+
+## Simulating Slow Subscriber
+![Slow Subscriber](images/slow_subs.png)
+Total queue meningkat karena publisher terus mengirimkan pesan lebih cepat daripada subscriber dapat memprosesnya. Setiap `cargo run` pada publisher menambah 5 pesan sekaligus ke queue, tetapi subscriber hanya menangani 1 pesan per detik, sehingga pesan-pesan tersebut menumpuk dalam antrean.
